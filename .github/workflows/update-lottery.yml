@@ -1,0 +1,75 @@
+# ===========================================================================
+# GitHub Actions：定時抓取彩票開獎號碼並更新快照
+# 檔案位置：.github/workflows/update-lottery.yml
+# ===========================================================================
+#
+# 【台北時間 ↔ UTC 換算說明】
+#   GitHub Actions 的 cron 一律使用 UTC 時區，且「不」支援時區設定。
+#   台北時間（Asia/Taipei）= UTC + 8 小時。
+#   因此：台北時間 21:00 = UTC 13:00；台北 23:00 = UTC 15:00。
+#
+#   本檔預設排程：每天台北時間 21:00～23:00 之間，每小時執行一次
+#     -> UTC 13:00、14:00、15:00  ->  cron: '0 13,14,15 * * *'
+#
+#   【如何自行調整】
+#     - 想改成每 12 分鐘輪詢一次（更即時）：
+#         cron: '*/12 12-15 * * *'   # UTC 12:00–15:59 = 台北 20:00–23:59
+#     - 想改成每天台北 22:00 執行一次：
+#         cron: '0 14 * * *'         # UTC 14:00 = 台北 22:00
+#     - 想同時涵蓋 BINGO BINGO（台北 07:00–23:00）：
+#         再加一條 cron: '0 23 * * *'（UTC 23:00 = 台北隔日 07:00）
+#         與 cron: '0 0-15 * * *'（UTC 00:00–15:00 = 台北 08:00–23:00）
+#
+#   ⚠️ 注意：GitHub Actions 的排程在尖峰時段可能延遲數分鐘至數十分鐘，
+#      這是 GitHub 平台的已知行為，非本專案問題。
+# ===========================================================================
+
+name: Update Lottery Snapshot
+
+on:
+  schedule:
+    # 每天台北時間 21:00 / 22:00 / 23:00（= UTC 13:00 / 14:00 / 15:00）
+    - cron: '0 13,14,15 * * *'
+  workflow_dispatch: {}   # 支援手動觸發（Actions 頁面按 Run workflow）
+
+# 需要寫入權限才能把更新後的快照 commit 回 repo
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) 取出 repo 內容
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) 安裝 Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3) 安裝相依套件（香港六合彩需要無頭瀏覽器）
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install --with-deps chromium
+
+      # 4) 執行抓取程式（--force 忽略窗口，確保排程觸發時一定抓取）
+      - name: Run update.py
+        run: python3 update.py --force
+
+      # 5) 若有變更則自動 commit 並 push（讓 GitHub Pages 更新）
+      - name: Commit and push snapshot
+        run: |
+          git config user.name  "lottery-bot"
+          git config user.email "lottery-bot@users.noreply.github.com"
+          git add data/snapshot.json
+          if git diff --quiet --cached; then
+            echo "快照無變更，略過 commit。"
+          else
+            git commit -m "chore: update lottery snapshot [skip ci]"
+            git push
+          fi

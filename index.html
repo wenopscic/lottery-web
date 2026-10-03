@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彩票即時開獎資訊 · 台灣／香港／中國</title>
+<meta name="description" content="整合台灣彩券、香港六合彩、中國福彩3D與體彩排列3/5的最新開獎資訊、開獎時間、期別與資料更新時間。">
+<style>
+:root{
+  --bg:#0b1020; --card:#161f36; --card2:#1c2742; --line:#2a3654;
+  --text:#e9eefb; --muted:#93a1c0; --gold:#f5b301; --red:#e63946;
+  --blue:#3b82f6; --green:#22c55e; --purple:#8b5cf6; --cyan:#0ea5e9;
+  --tw:#22c55e; --hk:#e11d48; --cn:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 620px at 50% -12%,#1c2745 0%,var(--bg) 58%);
+  color:var(--text);min-height:100vh;line-height:1.55;padding-bottom:40px;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{padding:34px 0 20px;text-align:center;position:relative}
+header::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:130px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold),#ff7a00)}
+h1{font-size:clamp(1.45rem,4.4vw,2.25rem);font-weight:800;letter-spacing:.5px}
+h1 .accent{color:var(--gold)}
+.sub{color:var(--muted);font-size:.92rem;margin-top:8px}
+.meta-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.82rem;color:var(--muted)}
+.pill b{color:var(--text);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.dot.warn{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.dot.err{background:var(--red);box-shadow:0 0 8px var(--red)}
+button.refresh{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:7px 16px;font-size:.82rem;cursor:pointer;transition:.2s;font-family:inherit}
+button.refresh:hover{border-color:var(--gold);color:var(--gold)}
+button.refresh:disabled{opacity:.5;cursor:wait}
+.region-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.region-nav a{text-decoration:none;color:var(--muted);font-size:.82rem;border:1px solid var(--line);border-radius:999px;padding:6px 14px;transition:.2s;background:var(--card)}
+.region-nav a:hover{color:var(--text);border-color:var(--gold)}
+.region{margin-top:34px}
+.region-title{font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid var(--line)}
+.region-title .flag{font-size:1.3rem}
+.region-title .rcount{margin-left:auto;font-size:.76rem;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+.region-title::before{content:"";width:5px;height:22px;border-radius:3px;background:var(--raccent,var(--gold))}
+.region-sub{color:var(--muted);font-size:.84rem;margin:10px 0 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;margin-top:16px}
+.card{background:linear-gradient(180deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--line);border-radius:18px;padding:20px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,var(--gold));opacity:.9}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.gname{font-size:1.14rem;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.period{font-size:.78rem;color:var(--muted);text-align:right;white-space:nowrap}
+.period b{display:block;color:var(--text);font-size:.9rem;font-weight:700}
+.badge{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:7px;border:1px solid;white-space:nowrap}
+.badge.auto{background:rgba(34,197,94,.14);color:#7ee2a8;border-color:rgba(34,197,94,.35)}
+.badge.cron{background:rgba(245,179,1,.14);color:#ffd166;border-color:rgba(245,179,1,.35)}
+.badge.headless{background:rgba(139,92,246,.16);color:#c4b5fd;border-color:rgba(139,92,246,.4)}
+.badge.link{background:rgba(14,165,233,.14);color:#7dd3fc;border-color:rgba(14,165,233,.35)}
+.badge.none{background:rgba(230,57,70,.14);color:#ff8a92;border-color:rgba(230,57,70,.35)}
+.badge.off{background:rgba(107,114,128,.18);color:#c3cad6;border-color:rgba(107,114,128,.4)}
+.balls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:6px 0 14px;min-height:52px}
+.ball{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.12rem;color:#fff;box-shadow:inset 0 -3px 6px rgba(0,0,0,.28),0 3px 8px rgba(0,0,0,.35)}
+.ball.red{background:radial-gradient(circle at 32% 28%,#ff6b74,var(--red) 70%)}
+.ball.blue{background:radial-gradient(circle at 32% 28%,#6aa5ff,var(--blue) 70%)}
+.ball.gold{background:radial-gradient(circle at 32% 28%,#ffd75e,#e08a00 72%);color:#3a2600}
+.ball.digit{width:44px;height:44px;font-size:1.3rem}
+.ball-sep{color:var(--muted);font-weight:700;font-size:1.1rem;padding:0 2px}
+.ball-label{font-size:.7rem;color:var(--muted);align-self:flex-end;margin-bottom:4px}
+.rows{display:flex;flex-direction:column;gap:8px;border-top:1px dashed var(--line);padding-top:12px}
+.row{display:flex;justify-content:space-between;gap:12px;font-size:.85rem}
+.row .k{color:var(--muted);flex:0 0 auto}
+.row .v{font-weight:600;text-align:right;word-break:break-word}
+.v.gold{color:var(--gold)} .v.green{color:var(--green)} .v.cyan{color:#7dd3fc}
+.v.mono{font-variant-numeric:tabular-nums;font-size:.82rem;color:var(--muted);font-weight:500}
+.skeleton{color:var(--muted);font-size:.9rem;padding:8px 0}
+.note{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:12px;padding:12px 14px;font-size:.83rem;color:#bcd0f5;margin-top:14px}
+.note.warn{background:rgba(230,57,70,.09);border-color:rgba(230,57,70,.3);color:#ffc2c6}
+.note b{color:#fff}
+a.src{color:#7fb0ff;text-decoration:none;word-break:break-all}
+a.src:hover{text-decoration:underline}
+.btn-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.35);color:#7dd3fc;text-decoration:none;font-size:.82rem;font-weight:600;padding:8px 14px;border-radius:10px;transition:.2s}
+.btn-link:hover{background:rgba(14,165,233,.22)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.legend span{font-size:.76rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.src-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.src-list li{display:flex;gap:12px;font-size:.87rem;align-items:flex-start}
+.src-list .ico{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(245,179,1,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800}
+.src-list .desc{color:var(--muted);font-size:.81rem;margin-top:2px}
+table.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:6px}
+table.tbl th,table.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.tbl th{background:rgba(255,255,255,.04);color:var(--text);font-weight:700;white-space:nowrap}
+table.tbl td{color:var(--muted)}
+table.tbl td b{color:var(--text)}
+.tbl-wrap{overflow-x:auto;margin-top:14px}
+footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:34px;padding:0 16px;line-height:1.8}
+footer .warn{color:#ffb4b4}
+@media(max-width:520px){
+  .ball{width:40px;height:40px;font-size:1rem}
+  .ball.digit{width:38px;height:38px;font-size:1.15rem}
+  .card{padding:16px}
+  .grid{gap:14px}
+  .row{font-size:.82rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>彩票 <span class="accent">即時開獎資訊</span></h1>
+    <p class="sub">台灣 · 香港 · 中國 — 最新開獎號碼、開獎時間、期別與資料更新時間</p>
+    <div class="meta-bar">
+      <span class="pill"><span class="dot" id="statusDot"></span><span id="statusText">載入中…</span></span>
+      <span class="pill">最後更新：<b id="lastUpdated">—</b></span>
+      <button class="refresh" id="refreshBtn" type="button">↻ 重新整理</button>
+    </div>
+    <nav class="region-nav">
+      <a href="#region-tw">🇹🇼 台灣</a>
+      <a href="#region-hk">🇭🇰 香港</a>
+      <a href="#region-cn">🇨🇳 中國</a>
+      <a href="#sources">資料來源</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="region" id="region-tw" style="--raccent:var(--tw)">
+      <h2 class="region-title"><span class="flag">🇹🇼</span>台灣<span class="rcount" id="count-tw"></span></h2>
+      <p class="region-sub">台灣彩券（台灣彩券股份有限公司）— 官方 API 即時抓取</p>
+      <div class="grid" id="grid-tw" aria-live="polite">
+        <div class="card"><div class="skeleton">載入開獎資料中…</div></div>
+      </div>
+    </section>
+
+    <section class="region" id="region-hk" style="--raccent:var(--hk)">
+      <h2 class="region-title"><span class="flag">🇭🇰</span>香港<span class="rcount" id="count-hk"></span></h2>
+      <p class="region-sub">香港賽馬會（香港馬會獎券有限公司）— 唯一合法主辦機構</p>
+      <div class="grid" id="grid-hk"></div>
+    </section>
+
+    <section class="region" id="region-cn" style="--raccent:var(--cn)">
+      <h2 class="region-title"><span class="flag">🇨🇳</span>中國<span class="rcount" id="count-cn"></span></h2>
+      <p class="region-sub">中國福利彩票（福彩）與中國體育彩票（體彩）— 官方開獎結果</p>
+      <div class="grid" id="grid-cn"></div>
+    </section>
+
+    <section class="region" id="sources" style="--raccent:var(--gold)">
+      <h2 class="region-title">資料來源與取得方式（實測結果）</h2>
+      <p class="region-sub">本站所有開獎號碼皆來自公開資料源，不經人工輸入、不編造號碼。無法取得即時資料者，一律以官方連結導向並清楚標示。</p>
+      <div class="legend">
+        <span><i style="background:#22c55e"></i>自動抓取（前端即時）</span>
+        <span><i style="background:#f5b301"></i>需定時抓取（後端排程）</span>
+        <span><i style="background:#8b5cf6"></i>需無頭瀏覽器渲染</span>
+        <span><i style="background:#0ea5e9"></i>官方連結導向</span>
+        <span><i style="background:#e63946"></i>無官方來源</span>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>彩種</th><th>實測網址</th><th>實測結果</th><th>資料取得方式</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>台灣 BINGO BINGO</b></td>
+              <td>taiwanlottery.com/lotto/result/bingo_bingo</td>
+              <td>HTTP 301→200；頁面為 Nuxt SPA（原始 HTML 無號碼）；自其 JS bundle 找到官方端點 <code>Lottery/BingoResult?openDate=</code>，實測 HTTP 200、CORS <code>*</code>，回傳當日全部期別（每 5 分鐘一期）與 20 個號碼</td>
+              <td><b>可即時抓取</b>（前端直連官方 API）</td>
+            </tr>
+            <tr>
+              <td><b>香港六合彩</b></td>
+              <td>bet.hkjc.com/ch/marksix/results</td>
+              <td>HTTP 200；頁面為 JS SPA（原始 HTML 無號碼）；官方 GraphQL 端點 <code>info.cld.hkjc.com/graphql/base/</code> 回傳 <code>WHITELIST_ERROR</code>（白名單限制）</td>
+              <td><b>需無頭瀏覽器渲染</b>（後端排程）</td>
+            </tr>
+            <tr>
+              <td><b>中國福彩 3D</b></td>
+              <td>cwl.gov.cn/ygkj/wqkjgg/</td>
+              <td>HTTP 403（網宿雲安全反爬）；官方 API <code>findDrawNotice</code> 亦 403</td>
+              <td><b>需定時抓取</b>（改用 500.com 公開 XML）</td>
+            </tr>
+            <tr>
+              <td><b>中國體彩 排列3</b></td>
+              <td>manycai.com/Issue/history?lottername=TCPL3</td>
+              <td>HTTP 200 但為登入頁（無資料）；官方 <code>webapi.sporttery.cn</code> 回傳 HTTP 567（反爬）</td>
+              <td><b>需定時抓取</b>（改用 500.com 公開 XML）</td>
+            </tr>
+            <tr>
+              <td><b>中國體彩 排列5</b></td>
+              <td>manycai.com/Issue/history?lottername=TCPL5</td>
+              <td>HTTP 200 但為登入頁（無資料）；官方端點同上 567</td>
+              <td><b>需定時抓取</b>（改用 500.com 公開 XML）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <ul class="src-list">
+          <li>
+            <span class="ico">1</span>
+            <div>
+              <b>台灣彩券官方 API（自動抓取）</b>
+              <div class="desc">端點：<code>api.taiwanlottery.com/TLCAPIWeB</code> — BINGO BINGO 使用 <code>Lottery/BingoResult?openDate=</code>（當日全部期別與 20 個號碼）。實測回應標頭為 <code>access-control-allow-origin: *</code>，前端可直接即時抓取，無需後端。</div>
+            </div>
+          </li>
+          <li>
+            <span class="ico">2</span>
+            <div>
+              <b>中國福彩 3D／體彩 排列3、排列5（需定時抓取）</b>
+              <div class="desc">官方來源：<a class="src" href="https://www.cwl.gov.cn/" target="_blank" rel="noopener">中國福利彩票 cwl.gov.cn</a>、<a class="src" href="https://www.sporttery.cn/" target="_blank" rel="noopener">中國體育彩票 sporttery.cn</a>。實測官方端點具反爬蟲保護（HTTP 403／567），故改用 <a class="src" href="https://kaijiang.500.com/" target="_blank" rel="noopener">500.com 公開 XML</a>（官方開獎結果之公開轉載），由後端排程程式 <code>fetch_lottery.py</code> 定時抓取並輸出 JSON 快照。</div>
+            </div>
+          </li>
+          <li>
+            <span class="ico">3</span>
+            <div>
+              <b>香港六合彩（需無頭瀏覽器渲染）</b>
+              <div class="desc">官方來源：<a class="src" href="https://bet.hkjc.com/marksix" target="_blank" rel="noopener">香港賽馬會 bet.hkjc.com/marksix</a>。實測官方 GraphQL 端點具白名單限制（<code>WHITELIST_ERROR</code>），頁面為 JS 動態渲染，故由後端排程程式以無頭瀏覽器（Playwright）渲染官網取得，輸出 JSON 快照。</div>
+            </div>
+          </li>
+          <li>
+            <span class="ico">4</span>
+            <div>
+              <b>統一發票中獎號碼（官方連結導向）</b>
+              <div class="desc">來源：<a class="src" href="https://invoice.etax.nat.gov.tw/" target="_blank" rel="noopener">財政部電子發票整合服務平台</a>（本沙盒環境連線逾時，故以官方連結導向，不重製號碼）。</div>
+            </div>
+          </li>
+        </ul>
+        <div class="note">
+          <b>更新方式：</b>台灣 BINGO BINGO 於每次開啟頁面時自動向官方 API 取得最新一期資料，並可手動「重新整理」；中國福彩3D／體彩排列3、排列5 與香港六合彩由後端排程程式 <code>fetch_lottery.py</code> 定時抓取並輸出 <code>data/snapshot.json</code>，網站讀取該快照並標示「資料更新時間」。若連線失敗，會顯示內建的最後一次成功快照並標示為「離線快照」，確保不顯示錯誤或空白號碼。
+        </div>
+        <div class="note">
+          <b>部署與維護：</b>本頁為純前端靜態網頁（HTML/CSS/JS），可直接部署於任何靜態網站空間（GitHub Pages、Netlify、Cloudflare Pages 或自有主機）。後端抓取程式 <code>fetch_lottery.py</code> 需 Python 3 與 Playwright（<code>pip install playwright &amp;&amp; playwright install chromium</code>），建議以 cron 於開獎窗口內輪詢執行（詳見 <code>fetch_lottery.py</code> 檔頭說明）：<code>*/12 21-23 * * * cd /path/to/lottery-live_v8 &amp;&amp; python3 fetch_lottery.py</code>。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>資料來源：台灣彩券股份有限公司公開 API、香港賽馬會、中國福利彩票、中國體育彩票、500.com 公開資料、財政部電子發票整合服務平台。本站僅彙整公開資訊，實際開獎結果以官方公告為準。</div>
+    <div class="warn">未滿 18 歲不得購買或兌領彩券 · 請理性投注，量力而為。</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var API = "https://api.taiwanlottery.com/TLCAPIWeB";
+  var SNAPSHOT_URL = "data/snapshot.json";
+
+  // 台灣彩券：可即時抓取
+  var TW_GAMES = [
+    {key:"bingo", name:"BINGO BINGO 賓果賓果", bingo:true, main:20, ballClass:"blue", accent:"#0ea5e9"}
+  ];
+
+  // 由後端快照提供（中國／香港）
+  var SNAPSHOT_GAMES = [
+    {key:"fc3d", region:"cn", name:"中國福彩 3D", accent:"#dc2626", digit:true,  ballClass:"red",  badge:"cron"},
+    {key:"pl3",  region:"cn", name:"中國體彩 排列3", accent:"#dc2626", digit:true,  ballClass:"red",  badge:"cron"},
+    {key:"pl5",  region:"cn", name:"中國體彩 排列5", accent:"#dc2626", digit:true,  ballClass:"red",  badge:"cron"},
+    {key:"hkjc", region:"hk", name:"香港六合彩", accent:"#e11d48", digit:false, ballClass:"red", special:true, specialLabel:"特別號", badge:"headless"}
+  ];
+
+  // 無法即時抓取者：官方連結導向 / 無官方來源
+  var STATIC_GAMES = [];
+
+  // 內建離線快照（最後一次成功抓取，2026-10-03）
+  var FALLBACK_SNAPSHOT = {
+    updatedDisplay:"2026/10/03 19:50:18",
+    games:{
+      fc3d:{name:"中國福彩 3D", period:"2026263", date:"2026-09-30", time:"21:15", numbers:[9,8,7], source:"500.com 公開 XML（官方開獎結果轉載）", method:"需定時抓取（後端排程）"},
+      pl3:{name:"中國體彩 排列3", period:"26263", date:"2026-09-30", time:"21:25", numbers:[1,7,1], source:"500.com 公開 XML（官方開獎結果轉載）", method:"需定時抓取（後端排程）"},
+      pl5:{name:"中國體彩 排列5", period:"26263", date:"2026-09-30", time:"21:25", numbers:[1,7,1,4,2], source:"500.com 公開 XML（官方開獎結果轉載）", method:"需定時抓取（後端排程）"},
+      hkjc:{name:"香港六合彩", period:"26/104", date:"2026-09-26", time:"21:30", numbers:[4,28,31,44,47,48], special:19, source:"香港賽馬會 HKJC 官網（無頭瀏覽器渲染）", method:"需定時抓取（無頭瀏覽器）"}
+    }
+  };
+  var FALLBACK_TW = {
+    updated:"2026-10-03T19:55:00+08:00",
+    games:{ bingo:{period:"115055979", date:"2026-10-03", numbers:[2,7,19,21,27,32,38,39,43,45,48,49,50,51,56,57,70,76,77,79], bullEye:"02"} }
+  };
+
+  var WEEK = ["日","一","二","三","四","五","六"];
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function fmtDate(s){
+    if(!s) return "—";
+    var d = new Date(s);
+    if(isNaN(d.getTime())) return s;
+    return d.getFullYear()+"/"+pad2(d.getMonth()+1)+"/"+pad2(d.getDate())+"（"+WEEK[d.getDay()]+"）";
+  }
+  function fmtDateTime(d){
+    if(!d) return "—";
+    return d.getFullYear()+"/"+pad2(d.getMonth()+1)+"/"+pad2(d.getDate())+" "+pad2(d.getHours())+":"+pad2(d.getMinutes())+":"+pad2(d.getSeconds());
+  }
+  function fmtMoney(n){
+    if(n===null||n===undefined||isNaN(n)) return "—";
+    return "NT$ "+Number(n).toLocaleString("en-US");
+  }
+  function parseNext(s){
+    if(!s) return null;
+    s = String(s);
+    var y=s.slice(0,4), mo=s.slice(4,6), d=s.slice(6,8);
+    var hh=null, mm=null;
+    if(s.length>=12){ hh=s.slice(8,10); mm=s.slice(10,12); }
+    return {date:y+"-"+mo+"-"+d, time: hh? (hh+":"+mm) : null};
+  }
+  function getJSON(url, ms){
+    ms = ms || 12000;
+    return new Promise(function(resolve, reject){
+      var ctrl = (typeof AbortController!=="undefined") ? new AbortController() : null;
+      var done = false;
+      var timer = setTimeout(function(){
+        if(done) return; done = true;
+        if(ctrl){ try{ ctrl.abort(); }catch(e){} }
+        reject(new Error("timeout"));
+      }, ms);
+      fetch(url,{cache:"no-store", signal: ctrl?ctrl.signal:undefined}).then(function(r){
+        if(!r.ok) throw new Error("HTTP "+r.status);
+        return r.json();
+      }).then(function(j){
+        if(done) return; done = true; clearTimeout(timer); resolve(j);
+      }).catch(function(e){
+        if(done) return; done = true; clearTimeout(timer); reject(e);
+      });
+    });
+  }
+  function fetchBingo(){
+    var d = new Date();
+    var ds = d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());
+    return getJSON(API+"/Lottery/BingoResult?openDate="+ds+"&pageNum=1&pageSize=200")
+      .then(function(j){
+        var rows = (j && j.content && j.content.bingoQueryResult) || [];
+        if(!rows.length) return null;
+        var latest = rows.reduce(function(a,b){ return (b.drawTerm>a.drawTerm)?b:a; });
+        return { period:String(latest.drawTerm||""), date:ds, numbers:(latest.bigShowOrder||[]).map(Number), bullEye:latest.bullEyeTop };
+      }).catch(function(){ return null; });
+  }
+  function fetchResult(endpoint, resKey){
+    var now = new Date();
+    var months = [];
+    for(var i=0;i<2;i++){
+      var d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+      months.push(d.getFullYear()+"-"+pad2(d.getMonth()+1));
+    }
+    return months.reduce(function(p, m){
+      return p.then(function(found){
+        if(found) return found;
+        return getJSON(API+"/Lottery/"+endpoint+"?period=&month="+m+"&pageNum=1&pageSize=1")
+          .then(function(j){
+            var arr = j && j.content && j.content[resKey];
+            return (arr && arr.length) ? arr[0] : null;
+          }).catch(function(){ return null; });
+      });
+    }, Promise.resolve(null));
+  }
+
+  function ballHTML(n, cls, digit){
+    var txt = digit ? String(n) : pad2(n);
+    return '<span class="ball '+cls+(digit?' digit':'')+'">'+txt+'</span>';
+  }
+
+  function renderLiveCard(g, data, offline, fetchTime){
+    var balls = "";
+    if(data && data.numbers && data.numbers.length){
+      var nums = data.numbers.slice();
+      if(!g.digit) nums.sort(function(a,b){return a-b;});
+      nums.forEach(function(n){ balls += ballHTML(n, g.ballClass, g.digit); });
+      if(g.special && data.special!==null && data.special!==undefined){
+        balls += '<span class="ball-sep">+</span>';
+        balls += ballHTML(data.special, "gold", false);
+        balls += '<span class="ball-label">'+g.specialLabel+'</span>';
+      }
+    } else {
+      balls = '<span class="skeleton">暫無資料</span>';
+    }
+
+    var nextTxt = "—";
+    if(data && data.next){
+      var nx = parseNext(data.next);
+      if(nx){ nextTxt = fmtDate(nx.date) + (nx.time? " "+nx.time : ""); }
+    }
+
+    var jackpotRow = "";
+
+    var badge = offline
+      ? '<span class="badge off">離線快照</span>'
+      : '<span class="badge auto">自動抓取</span>';
+
+    return ''+
+    '<article class="card" style="--accent:'+g.accent+'">'+
+      '<div class="card-head">'+
+        '<div class="gname">'+g.name+' '+badge+'</div>'+
+        '<div class="period"><b>第 '+(data&&data.period?data.period:"—")+' 期</b>開獎日 '+fmtDate(data?data.date:null)+'</div>'+
+      '</div>'+
+      '<div class="balls">'+balls+'</div>'+
+      '<div class="rows">'+
+        (g.bingo
+          ? '<div class="row"><span class="k">開獎頻率</span><span class="v green">每日 07:00–23:00，每 5 分鐘一期</span></div>'+
+            '<div class="row"><span class="k">超級獎號</span><span class="v gold">'+(data&&data.bullEye?data.bullEye:"—")+'</span></div>'
+          : '<div class="row"><span class="k">下一期開獎</span><span class="v green">'+nextTxt+'</span></div>'+jackpotRow)+
+        '<div class="row"><span class="k">資料來源</span><span class="v">台灣彩券官方 API</span></div>'+
+        '<div class="row"><span class="k">資料更新時間</span><span class="v mono">'+fmtDateTime(fetchTime)+(offline?'（快照）':'')+'</span></div>'+
+      '</div>'+
+    '</article>';
+  }
+
+  function renderSnapshotCard(g, data, offline, updatedDisplay){
+    var balls = "";
+    if(data && data.numbers && data.numbers.length){
+      var nums = data.numbers.slice();
+      if(!g.digit) nums.sort(function(a,b){return a-b;});
+      nums.forEach(function(n){ balls += ballHTML(n, g.ballClass, g.digit); });
+      if(g.special && data.special!==null && data.special!==undefined){
+        balls += '<span class="ball-sep">+</span>';
+        balls += ballHTML(data.special, "gold", false);
+        balls += '<span class="ball-label">'+g.specialLabel+'</span>';
+      }
+    } else {
+      balls = '<span class="skeleton">暫無資料</span>';
+    }
+
+    var delayed = !!(data && data.delayed);
+    var badgeCls = offline ? "off" : (delayed ? "cron" : g.badge);
+    var badgeTxt = offline ? "離線快照" : (delayed ? "資料延遲" : (g.badge==="headless" ? "需無頭瀏覽器" : "需定時抓取"));
+    var badge = '<span class="badge '+badgeCls+'">'+badgeTxt+'</span>';
+    var statusTxt = offline ? "離線快照" : (delayed ? "資料延遲（保留上次成功資料）" : "正常更新");
+
+    var openTime = (data && data.date) ? (fmtDate(data.date) + (data.time? " "+data.time : "")) : "—";
+
+    return ''+
+    '<article class="card" style="--accent:'+g.accent+'">'+
+      '<div class="card-head">'+
+        '<div class="gname">'+g.name+' '+badge+'</div>'+
+        '<div class="period"><b>第 '+(data&&data.period?data.period:"—")+' 期</b>開獎日 '+fmtDate(data?data.date:null)+'</div>'+
+      '</div>'+
+      '<div class="balls">'+balls+'</div>'+
+      '<div class="rows">'+
+        '<div class="row"><span class="k">開獎日期時間</span><span class="v">'+openTime+'</span></div>'+
+        '<div class="row"><span class="k">資料來源</span><span class="v">'+(data&&data.source?data.source:"—")+'</span></div>'+
+        '<div class="row"><span class="k">資料取得方式</span><span class="v">'+(data&&data.method?data.method:"—")+'</span></div>'+
+        '<div class="row"><span class="k">資料狀態</span><span class="v '+(delayed?'gold':'green')+'">'+statusTxt+'</span></div>'+
+        '<div class="row"><span class="k">資料更新時間</span><span class="v mono">'+((data&&data.lastSuccess)?data.lastSuccess:(updatedDisplay||"—"))+(offline?'（快照）':(delayed?'（延遲）':''))+'</span></div>'+
+      '</div>'+
+    '</article>';
+  }
+
+  function renderStaticCard(g){
+    var badge = '<span class="badge '+g.badge+'">'+g.method+'</span>';
+    var noteCls = g.warn ? "note warn" : "note";
+    return ''+
+    '<article class="card" style="--accent:'+g.accent+'">'+
+      '<div class="card-head">'+
+        '<div class="gname">'+g.name+' '+badge+'</div>'+
+        '<div class="period"><b>官方連結導向</b>不重製號碼</div>'+
+      '</div>'+
+      '<div class="rows" style="border-top:none;padding-top:0">'+
+        '<div class="row"><span class="k">開獎時間</span><span class="v">'+g.schedule+'</span></div>'+
+        '<div class="row"><span class="k">資料來源</span><span class="v"><a class="src" href="'+g.url+'" target="_blank" rel="noopener">'+g.source+'</a></span></div>'+
+        '<div class="row"><span class="k">資料取得方式</span><span class="v">'+g.method+'</span></div>'+
+        '<div class="row"><span class="k">資料更新時間</span><span class="v mono">未抓取（官方連結導向）</span></div>'+
+      '</div>'+
+      '<div class="'+noteCls+'">'+g.note+'</div>'+
+      '<a class="btn-link" href="'+g.url+'" target="_blank" rel="noopener">前往官方網站查詢 ↗</a>'+
+    '</article>';
+  }
+
+  function renderTW(live, fetchTime){
+    var host = document.getElementById("grid-tw");
+    var html = "";
+    TW_GAMES.forEach(function(g){
+      var data = (live && live[g.key]) ? live[g.key] : (FALLBACK_TW.games[g.key] || null);
+      var isOffline = !(live && live[g.key]);
+      html += renderLiveCard(g, data, isOffline, fetchTime);
+    });
+    STATIC_GAMES.filter(function(g){ return g.region==="tw"; }).forEach(function(g){
+      html += renderStaticCard(g);
+    });
+    host.innerHTML = html;
+    var twStatic = STATIC_GAMES.filter(function(g){ return g.region==="tw"; }).length;
+    document.getElementById("count-tw").textContent = (TW_GAMES.length + twStatic) + " 款";
+  }
+
+  function renderSnapshot(snap, offline){
+    var games = (snap && snap.games) ? snap.games : {};
+    var updatedDisplay = (snap && snap.updatedDisplay) ? snap.updatedDisplay : "—";
+    var buckets = {hk:[], cn:[]};
+    SNAPSHOT_GAMES.forEach(function(g){
+      var data = games[g.key] || null;
+      var isOffline = offline || !data;
+      if(buckets[g.region]) buckets[g.region].push(renderSnapshotCard(g, data, isOffline, updatedDisplay));
+    });
+    STATIC_GAMES.forEach(function(g){
+      if(buckets[g.region]) buckets[g.region].push(renderStaticCard(g));
+    });
+    ["hk","cn"].forEach(function(r){
+      var host = document.getElementById("grid-"+r);
+      if(!host) return;
+      host.innerHTML = buckets[r].join("");
+      var c = document.getElementById("count-"+r);
+      if(c){ c.textContent = buckets[r].length + " 款"; }
+    });
+  }
+
+  function setStatus(state, text){
+    var dot = document.getElementById("statusDot");
+    dot.className = "dot" + (state==="live"?"":(state==="offline"?" warn":" err"));
+    document.getElementById("statusText").textContent = text;
+  }
+
+  function load(){
+    var btn = document.getElementById("refreshBtn");
+    btn.disabled = true;
+    setStatus("loading","載入中…");
+    var fetchTime = new Date();
+
+    // 先以內建快照立即渲染，確保任何情況下都不會空白或卡在「載入中」
+    try{
+      renderSnapshot(FALLBACK_SNAPSHOT, true);
+      renderTW(null, new Date(FALLBACK_TW.updated));
+    }catch(e){}
+
+    var twTasks = [
+      getJSON(API+"/Lottery/NextDrawDate").catch(function(){return null;}),
+      getJSON(API+"/Lottery/Jackpot").catch(function(){return null;})
+    ];
+    TW_GAMES.forEach(function(g){
+      if(g.bingo){ twTasks.push(fetchBingo()); }
+      else if(g.endpoint){ twTasks.push(fetchResult(g.endpoint, g.resKey).catch(function(){return null;})); }
+      else { twTasks.push(Promise.resolve(null)); }
+    });
+    var snapTask = getJSON(SNAPSHOT_URL).catch(function(){ return null; });
+
+    Promise.all([Promise.all(twTasks), snapTask]).then(function(res){
+      var twRes = res[0], snap = res[1];
+      var nextDraw = twRes[0], jackpot = twRes[1];
+      var resultByKey = {};
+      TW_GAMES.forEach(function(g, i){ resultByKey[g.key] = twRes[2+i]; });
+
+      var live = {};
+      var anyLive = false;
+      TW_GAMES.forEach(function(g){
+        var entry = null;
+        var r = resultByKey[g.key];
+        if(r){
+          if(g.bingo){
+            entry = r;
+          } else {
+            var nums = r.drawNumberSize || r.drawNumberAppear || [];
+            var main = nums.slice(0, g.main);
+            var special = null;
+            if(g.special && nums.length > g.main) special = nums[g.main];
+            entry = { period:String(r.period||""), date:r.lotteryDate||null, numbers:main, special:special };
+          }
+        }
+        if(entry && !g.bingo){
+          if(nextDraw && nextDraw.content && nextDraw.content.nextDrawDateList){
+            var nd = nextDraw.content.nextDrawDateList.filter(function(x){return x.gameCode===g.code;})[0];
+            if(nd) entry.next = nd.drawDate;
+          }
+          if(jackpot && jackpot.content && jackpot.content.jackpotList){
+            var jp = jackpot.content.jackpotList.filter(function(x){return x.gameCode===g.code;})[0];
+            if(jp && jp.jackpot) entry.jackpot = parseInt(jp.jackpot,10);
+          }
+        }
+        if(entry){
+          live[g.key] = entry;
+          anyLive = true;
+        }
+      });
+
+      var snapOffline = !snap;
+      renderSnapshot(snap || FALLBACK_SNAPSHOT, snapOffline);
+
+      if(anyLive){
+        renderTW(live, fetchTime);
+        setStatus("live","台灣彩券即時資料");
+        document.getElementById("lastUpdated").textContent = fmtDateTime(fetchTime);
+      } else {
+        renderTW(null, new Date(FALLBACK_TW.updated));
+        setStatus("offline","離線快照");
+        document.getElementById("lastUpdated").textContent = fmtDateTime(new Date(FALLBACK_TW.updated))+"（快照）";
+      }
+    }).catch(function(){
+      renderSnapshot(FALLBACK_SNAPSHOT, true);
+      renderTW(null, new Date(FALLBACK_TW.updated));
+      setStatus("offline","離線快照");
+      document.getElementById("lastUpdated").textContent = fmtDateTime(new Date(FALLBACK_TW.updated))+"（快照）";
+    }).then(function(){
+      btn.disabled = false;
+    });
+  }
+
+  document.getElementById("refreshBtn").addEventListener("click", load);
+  load();
+})();
+</script>
+</body>
+</html>

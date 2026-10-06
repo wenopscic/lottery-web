@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-06T05:28:07.024885+08:00",
-  "updatedDisplay": "2026/10/06 05:28:07",
+  "updated": "2026-10-06T16:06:33.343566+08:00",
+  "updatedDisplay": "2026/10/06 16:06:33",
   "games": {
     "fc3d": {
       "window": "週一二三四五六日 20:30–22:30",
@@ -89,51 +89,44 @@
       "lastSuccess": "2026/10/03 22:56:26"
     },
     "bingo": {
-      "window": "週一二三四五六日 07:00–23:00",
-      "lastAttempt": "2026/10/03 23:08:50",
       "name": "BINGO BINGO 賓果賓果",
       "short": "賓果賓果",
-      "period": "115056018",
-      "date": "2026-10-03",
+      "period": "115056543",
+      "date": "2026-10-06",
       "time": "",
       "numbers": [
-        1,
-        3,
-        4,
-        8,
+        2,
+        12,
         16,
-        17,
-        19,
-        20,
-        25,
-        34,
-        36,
-        39,
-        47,
-        50,
-        52,
+        26,
+        31,
+        33,
+        38,
+        41,
+        45,
+        48,
+        53,
         54,
-        68,
-        71,
-        72,
-        80
+        59,
+        61,
+        63,
+        64,
+        73,
+        74,
+        76,
+        77
       ],
-      "bullEye": "80",
+      "bullEye": "33",
       "source": "台灣彩券官方 API（BingoResult）",
       "sourceUrl": "https://api.taiwanlottery.com/TLCAPIWeB/Lottery/BingoResult",
       "method": "自動抓取（前端即時）",
-      "status": "delayed",
-      "delayed": true,
-      "lastSuccess": "2026/10/03 23:08:50",
-      "lastError": "bingo: no rows for 2026-10-06"
+      "status": "updated",
+      "delayed": false,
+      "lastAttempt": "2026/10/06 16:06:33",
+      "lastSuccess": "2026/10/06 16:06:33",
+      "window": "週一二三四五六日 07:00–23:00"
     }
   },
   "status": {},
-  "errors": [
-    {
-      "key": "bingo",
-      "error": "bingo: no rows for 2026-10-06",
-      "at": "2026/10/06 05:28:07"
-    }
-  ]
+  "errors": []
 }

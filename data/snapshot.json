@@ -1,92 +1,92 @@
 {
-  "updated": "2026-10-08T03:56:33.402786+08:00",
-  "updatedDisplay": "2026/10/08 03:56:33",
+  "updated": "2026-10-09T03:21:33.576301+08:00",
+  "updatedDisplay": "2026/10/09 03:21:33",
   "games": {
     "fc3d": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/08 03:27:13",
       "name": "中國福彩 3D",
       "short": "福彩3D",
-      "period": "2026266",
-      "date": "2026-10-07",
+      "period": "2026267",
+      "date": "2026-10-08",
       "time": "21:15",
       "numbers": [
-        3,
-        4,
-        6
+        8,
+        5,
+        7
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/08 03:27:13"
+      "lastAttempt": "2026/10/09 03:21:33",
+      "lastSuccess": "2026/10/09 03:21:33",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl3": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/08 03:27:13",
       "name": "中國體彩 排列3",
       "short": "排列3",
-      "period": "26266",
-      "date": "2026-10-07",
+      "period": "26267",
+      "date": "2026-10-08",
       "time": "21:25",
       "numbers": [
-        1,
         2,
-        1
+        1,
+        6
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/08 03:27:13"
+      "lastAttempt": "2026/10/09 03:21:33",
+      "lastSuccess": "2026/10/09 03:21:33",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/08 03:27:13",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26266",
-      "date": "2026-10-07",
+      "period": "26267",
+      "date": "2026-10-08",
       "time": "21:25",
       "numbers": [
-        1,
         2,
         1,
-        7,
-        2
+        6,
+        2,
+        1
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/08 03:27:13"
+      "lastAttempt": "2026/10/09 03:21:33",
+      "lastSuccess": "2026/10/09 03:21:33",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
-      "window": "週二四日 21:00–23:00",
-      "lastAttempt": "2026/10/07 02:59:15",
       "name": "香港六合彩",
       "short": "六合彩",
-      "period": "26/106",
-      "date": "2026-10-06",
+      "period": "26/107",
+      "date": "2026-10-08",
       "time": "21:30",
       "numbers": [
-        9,
-        29,
+        18,
+        19,
+        24,
         31,
-        34,
-        36,
-        41
+        40,
+        44
       ],
-      "special": 28,
+      "special": 5,
       "source": "香港賽馬會 HKJC 官網（無頭瀏覽器渲染）",
       "sourceUrl": "https://bet.hkjc.com/ch/marksix/results",
       "method": "需定時抓取（無頭瀏覽器）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/07 02:59:15"
+      "lastAttempt": "2026/10/09 03:21:33",
+      "lastSuccess": "2026/10/09 03:21:33",
+      "window": "週二四日 21:00–23:00"
     },
     "bingo": {
       "window": "週一二三四五六日 07:00–23:00",
@@ -125,15 +125,15 @@
       "status": "delayed",
       "delayed": true,
       "lastSuccess": "2026/10/06 16:06:33",
-      "lastError": "bingo: no rows for 2026-10-08"
+      "lastError": "bingo: no rows for 2026-10-09"
     }
   },
   "status": {},
   "errors": [
     {
       "key": "bingo",
-      "error": "bingo: no rows for 2026-10-08",
-      "at": "2026/10/08 03:56:33"
+      "error": "bingo: no rows for 2026-10-09",
+      "at": "2026/10/09 03:21:33"
     }
   ]
 }

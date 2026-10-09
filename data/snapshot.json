@@ -1,8 +1,10 @@
 {
-  "updated": "2026-10-10T02:55:01.640333+08:00",
-  "updatedDisplay": "2026/10/10 02:55:01",
+  "updated": "2026-10-10T03:29:47.298607+08:00",
+  "updatedDisplay": "2026/10/10 03:29:47",
   "games": {
     "fc3d": {
+      "window": "週一二三四五六日 20:30–22:30",
+      "lastAttempt": "2026/10/10 02:55:01",
       "name": "中國福彩 3D",
       "short": "福彩3D",
       "period": "2026268",
@@ -16,13 +18,13 @@
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/10 02:55:01",
-      "lastSuccess": "2026/10/10 02:55:01",
-      "window": "週一二三四五六日 20:30–22:30"
+      "lastSuccess": "2026/10/10 02:55:01"
     },
     "pl3": {
+      "window": "週一二三四五六日 20:30–22:30",
+      "lastAttempt": "2026/10/10 02:55:01",
       "name": "中國體彩 排列3",
       "short": "排列3",
       "period": "26268",
@@ -36,13 +38,13 @@
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/10 02:55:01",
-      "lastSuccess": "2026/10/10 02:55:01",
-      "window": "週一二三四五六日 20:30–22:30"
+      "lastSuccess": "2026/10/10 02:55:01"
     },
     "pl5": {
+      "window": "週一二三四五六日 20:30–22:30",
+      "lastAttempt": "2026/10/10 02:55:01",
       "name": "中國體彩 排列5",
       "short": "排列5",
       "period": "26268",
@@ -58,11 +60,9 @@
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/10 02:55:01",
-      "lastSuccess": "2026/10/10 02:55:01",
-      "window": "週一二三四五六日 20:30–22:30"
+      "lastSuccess": "2026/10/10 02:55:01"
     },
     "hkjc": {
       "window": "週二四日 21:00–23:00",
@@ -133,7 +133,7 @@
     {
       "key": "bingo",
       "error": "bingo: no rows for 2026-10-10",
-      "at": "2026/10/10 02:55:01"
+      "at": "2026/10/10 03:29:47"
     }
   ]
 }

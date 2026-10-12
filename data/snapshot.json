@@ -1,68 +1,68 @@
 {
-  "updated": "2026-10-12T02:48:48.003448+08:00",
-  "updatedDisplay": "2026/10/12 02:48:48",
+  "updated": "2026-10-13T05:48:54.173291+08:00",
+  "updatedDisplay": "2026/10/13 05:48:54",
   "games": {
     "fc3d": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/12 02:16:35",
       "name": "中國福彩 3D",
       "short": "福彩3D",
-      "period": "2026270",
-      "date": "2026-10-11",
+      "period": "2026271",
+      "date": "2026-10-12",
       "time": "21:15",
       "numbers": [
-        0,
+        2,
         8,
-        4
+        0
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/12 02:16:35"
+      "lastAttempt": "2026/10/13 05:48:54",
+      "lastSuccess": "2026/10/13 05:48:54",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl3": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/12 02:16:35",
       "name": "中國體彩 排列3",
       "short": "排列3",
-      "period": "26270",
-      "date": "2026-10-11",
+      "period": "26271",
+      "date": "2026-10-12",
       "time": "21:25",
       "numbers": [
         6,
-        4,
-        1
+        2,
+        2
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/12 02:16:35"
+      "lastAttempt": "2026/10/13 05:48:54",
+      "lastSuccess": "2026/10/13 05:48:54",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/12 02:16:35",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26270",
-      "date": "2026-10-11",
+      "period": "26271",
+      "date": "2026-10-12",
       "time": "21:25",
       "numbers": [
         6,
-        4,
-        1,
         2,
-        4
+        2,
+        4,
+        6
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/12 02:16:35"
+      "lastAttempt": "2026/10/13 05:48:54",
+      "lastSuccess": "2026/10/13 05:48:54",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
       "window": "週二四日 21:00–23:00",
@@ -125,15 +125,15 @@
       "status": "delayed",
       "delayed": true,
       "lastSuccess": "2026/10/06 16:06:33",
-      "lastError": "bingo: no rows for 2026-10-12"
+      "lastError": "bingo: no rows for 2026-10-13"
     }
   },
   "status": {},
   "errors": [
     {
       "key": "bingo",
-      "error": "bingo: no rows for 2026-10-12",
-      "at": "2026/10/12 02:48:48"
+      "error": "bingo: no rows for 2026-10-13",
+      "at": "2026/10/13 05:48:54"
     }
   ]
 }

@@ -1,92 +1,92 @@
 {
-  "updated": "2026-10-15T02:32:40.830464+08:00",
-  "updatedDisplay": "2026/10/15 02:32:40",
+  "updated": "2026-10-16T01:50:51.227803+08:00",
+  "updatedDisplay": "2026/10/16 01:50:51",
   "games": {
     "fc3d": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/15 02:07:08",
       "name": "中國福彩 3D",
       "short": "福彩3D",
-      "period": "2026273",
-      "date": "2026-10-14",
+      "period": "2026274",
+      "date": "2026-10-15",
       "time": "21:15",
       "numbers": [
-        9,
-        0,
-        2
+        8,
+        2,
+        3
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/15 02:07:08"
+      "lastAttempt": "2026/10/16 01:50:51",
+      "lastSuccess": "2026/10/16 01:50:51",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl3": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/15 02:07:08",
       "name": "中國體彩 排列3",
       "short": "排列3",
-      "period": "26273",
-      "date": "2026-10-14",
+      "period": "26274",
+      "date": "2026-10-15",
       "time": "21:25",
       "numbers": [
-        7,
-        0,
-        3
+        3,
+        6,
+        1
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/15 02:07:08"
+      "lastAttempt": "2026/10/16 01:50:51",
+      "lastSuccess": "2026/10/16 01:50:51",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/15 02:07:08",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26273",
-      "date": "2026-10-14",
+      "period": "26274",
+      "date": "2026-10-15",
       "time": "21:25",
       "numbers": [
-        7,
-        0,
         3,
         6,
-        7
+        1,
+        9,
+        5
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/15 02:07:08"
+      "lastAttempt": "2026/10/16 01:50:51",
+      "lastSuccess": "2026/10/16 01:50:51",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
-      "window": "週二四日 21:00–23:00",
-      "lastAttempt": "2026/10/14 03:56:02",
       "name": "香港六合彩",
       "short": "六合彩",
-      "period": "26/109",
-      "date": "2026-10-13",
+      "period": "26/110",
+      "date": "2026-10-15",
       "time": "21:30",
       "numbers": [
         3,
-        5,
-        9,
-        17,
-        21,
-        26
+        7,
+        8,
+        10,
+        36,
+        42
       ],
-      "special": 38,
+      "special": 20,
       "source": "香港賽馬會 HKJC 官網（無頭瀏覽器渲染）",
       "sourceUrl": "https://bet.hkjc.com/ch/marksix/results",
       "method": "需定時抓取（無頭瀏覽器）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/14 03:56:02"
+      "lastAttempt": "2026/10/16 01:50:51",
+      "lastSuccess": "2026/10/16 01:50:51",
+      "window": "週二四日 21:00–23:00"
     },
     "bingo": {
       "window": "週一二三四五六日 07:00–23:00",
@@ -125,15 +125,15 @@
       "status": "delayed",
       "delayed": true,
       "lastSuccess": "2026/10/06 16:06:33",
-      "lastError": "bingo: no rows for 2026-10-15"
+      "lastError": "bingo: no rows for 2026-10-16"
     }
   },
   "status": {},
   "errors": [
     {
       "key": "bingo",
-      "error": "bingo: no rows for 2026-10-15",
-      "at": "2026/10/15 02:32:40"
+      "error": "bingo: no rows for 2026-10-16",
+      "at": "2026/10/16 01:50:51"
     }
   ]
 }

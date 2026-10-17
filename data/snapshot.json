@@ -1,8 +1,10 @@
 {
-  "updated": "2026-10-18T00:34:37.399232+08:00",
-  "updatedDisplay": "2026/10/18 00:34:37",
+  "updated": "2026-10-18T01:04:39.470219+08:00",
+  "updatedDisplay": "2026/10/18 01:04:39",
   "games": {
     "fc3d": {
+      "window": "週一二三四五六日 20:30–22:30",
+      "lastAttempt": "2026/10/18 00:34:37",
       "name": "中國福彩 3D",
       "short": "福彩3D",
       "period": "2026276",
@@ -16,13 +18,13 @@
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/18 00:34:37",
-      "lastSuccess": "2026/10/18 00:34:37",
-      "window": "週一二三四五六日 20:30–22:30"
+      "lastSuccess": "2026/10/18 00:34:37"
     },
     "pl3": {
+      "window": "週一二三四五六日 20:30–22:30",
+      "lastAttempt": "2026/10/18 00:34:37",
       "name": "中國體彩 排列3",
       "short": "排列3",
       "period": "26276",
@@ -36,36 +38,35 @@
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/18 00:34:37",
-      "lastSuccess": "2026/10/18 00:34:37",
-      "window": "週一二三四五六日 20:30–22:30"
+      "lastSuccess": "2026/10/18 00:34:37"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/17 01:35:32",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26275",
-      "date": "2026-10-16",
+      "period": "26276",
+      "date": "2026-10-17",
       "time": "21:25",
       "numbers": [
-        2,
+        9,
         0,
         6,
-        6,
-        6
+        5,
+        1
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "delayed",
-      "delayed": true,
-      "lastSuccess": "2026/10/17 01:35:32",
-      "lastError": "<urlopen error _ssl.c:999: The handshake operation timed out>"
+      "status": "updated",
+      "delayed": false,
+      "lastAttempt": "2026/10/18 01:04:39",
+      "lastSuccess": "2026/10/18 01:04:39",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
+      "window": "週二四日 21:00–23:00",
+      "lastAttempt": "2026/10/18 00:34:37",
       "name": "香港六合彩",
       "short": "六合彩",
       "period": "26/111",
@@ -83,11 +84,9 @@
       "source": "香港賽馬會 HKJC 官網（無頭瀏覽器渲染）",
       "sourceUrl": "https://bet.hkjc.com/ch/marksix/results",
       "method": "需定時抓取（無頭瀏覽器）",
-      "status": "updated",
+      "status": "unchanged",
       "delayed": false,
-      "lastAttempt": "2026/10/18 00:34:37",
-      "lastSuccess": "2026/10/18 00:34:37",
-      "window": "週二四日 21:00–23:00"
+      "lastSuccess": "2026/10/18 00:34:37"
     },
     "bingo": {
       "window": "週一二三四五六日 07:00–23:00",
@@ -132,14 +131,9 @@
   "status": {},
   "errors": [
     {
-      "key": "pl5",
-      "error": "<urlopen error _ssl.c:999: The handshake operation timed out>",
-      "at": "2026/10/18 00:34:37"
-    },
-    {
       "key": "bingo",
       "error": "bingo: no rows for 2026-10-18",
-      "at": "2026/10/18 00:34:37"
+      "at": "2026/10/18 01:04:39"
     }
   ]
 }

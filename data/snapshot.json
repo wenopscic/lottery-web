@@ -1,92 +1,92 @@
 {
-  "updated": "2026-10-20T03:50:11.819747+08:00",
-  "updatedDisplay": "2026/10/20 03:50:11",
+  "updated": "2026-10-21T02:04:18.694196+08:00",
+  "updatedDisplay": "2026/10/21 02:04:18",
   "games": {
     "fc3d": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/20 03:25:13",
       "name": "中國福彩 3D",
       "short": "福彩3D",
-      "period": "2026278",
-      "date": "2026-10-19",
+      "period": "2026279",
+      "date": "2026-10-20",
       "time": "21:15",
       "numbers": [
-        6,
-        6,
-        6
+        7,
+        9,
+        1
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/20 03:25:13"
+      "lastAttempt": "2026/10/21 02:04:18",
+      "lastSuccess": "2026/10/21 02:04:18",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl3": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/20 03:25:13",
       "name": "中國體彩 排列3",
       "short": "排列3",
-      "period": "26278",
-      "date": "2026-10-19",
+      "period": "26279",
+      "date": "2026-10-20",
       "time": "21:25",
       "numbers": [
-        5,
-        8,
-        3
+        4,
+        7,
+        1
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/20 03:25:13"
+      "lastAttempt": "2026/10/21 02:04:18",
+      "lastSuccess": "2026/10/21 02:04:18",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/20 03:25:13",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26278",
-      "date": "2026-10-19",
+      "period": "26279",
+      "date": "2026-10-20",
       "time": "21:25",
       "numbers": [
-        5,
+        4,
+        7,
+        1,
         8,
-        3,
-        8,
-        3
+        4
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/20 03:25:13"
+      "lastAttempt": "2026/10/21 02:04:18",
+      "lastSuccess": "2026/10/21 02:04:18",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
-      "window": "週二四日 21:00–23:00",
-      "lastAttempt": "2026/10/18 00:34:37",
       "name": "香港六合彩",
       "short": "六合彩",
-      "period": "26/111",
-      "date": "2026-10-17",
+      "period": "26/112",
+      "date": "2026-10-20",
       "time": "21:30",
       "numbers": [
-        3,
-        13,
-        27,
-        29,
-        30,
-        40
+        2,
+        5,
+        7,
+        8,
+        21,
+        29
       ],
-      "special": 9,
+      "special": 31,
       "source": "香港賽馬會 HKJC 官網（無頭瀏覽器渲染）",
       "sourceUrl": "https://bet.hkjc.com/ch/marksix/results",
       "method": "需定時抓取（無頭瀏覽器）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/18 00:34:37"
+      "lastAttempt": "2026/10/21 02:04:18",
+      "lastSuccess": "2026/10/21 02:04:18",
+      "window": "週二四日 21:00–23:00"
     },
     "bingo": {
       "window": "週一二三四五六日 07:00–23:00",
@@ -125,15 +125,15 @@
       "status": "delayed",
       "delayed": true,
       "lastSuccess": "2026/10/06 16:06:33",
-      "lastError": "bingo: no rows for 2026-10-20"
+      "lastError": "bingo: no rows for 2026-10-21"
     }
   },
   "status": {},
   "errors": [
     {
       "key": "bingo",
-      "error": "bingo: no rows for 2026-10-20",
-      "at": "2026/10/20 03:50:11"
+      "error": "bingo: no rows for 2026-10-21",
+      "at": "2026/10/21 02:04:18"
     }
   ]
 }

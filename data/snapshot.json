@@ -1,92 +1,92 @@
 {
-  "updated": "2026-10-24T02:15:58.501026+08:00",
-  "updatedDisplay": "2026/10/24 02:15:58",
+  "updated": "2026-10-25T00:47:21.225996+08:00",
+  "updatedDisplay": "2026/10/25 00:47:21",
   "games": {
     "fc3d": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/24 01:56:04",
       "name": "中國福彩 3D",
       "short": "福彩3D",
-      "period": "2026282",
-      "date": "2026-10-23",
+      "period": "2026283",
+      "date": "2026-10-24",
       "time": "21:15",
       "numbers": [
-        3,
+        2,
         0,
-        0
+        2
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/sd/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/24 01:56:04"
+      "lastAttempt": "2026/10/25 00:47:21",
+      "lastSuccess": "2026/10/25 00:47:21",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl3": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/24 01:56:04",
       "name": "中國體彩 排列3",
       "short": "排列3",
-      "period": "26282",
-      "date": "2026-10-23",
+      "period": "26283",
+      "date": "2026-10-24",
       "time": "21:25",
       "numbers": [
-        6,
-        4,
-        7
+        2,
+        5,
+        8
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/pls/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/24 01:56:04"
+      "lastAttempt": "2026/10/25 00:47:21",
+      "lastSuccess": "2026/10/25 00:47:21",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "pl5": {
-      "window": "週一二三四五六日 20:30–22:30",
-      "lastAttempt": "2026/10/24 01:56:04",
       "name": "中國體彩 排列5",
       "short": "排列5",
-      "period": "26282",
-      "date": "2026-10-23",
+      "period": "26283",
+      "date": "2026-10-24",
       "time": "21:25",
       "numbers": [
-        6,
-        4,
-        7,
+        2,
+        5,
+        8,
         4,
         5
       ],
       "source": "500.com 公開 XML（官方開獎結果轉載）",
       "sourceUrl": "https://kaijiang.500.com/static/info/kaijiang/xml/plw/list.xml",
       "method": "需定時抓取（後端排程）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/24 01:56:04"
+      "lastAttempt": "2026/10/25 00:47:21",
+      "lastSuccess": "2026/10/25 00:47:21",
+      "window": "週一二三四五六日 20:30–22:30"
     },
     "hkjc": {
-      "window": "週二四日 21:00–23:00",
-      "lastAttempt": "2026/10/23 02:16:32",
       "name": "香港六合彩",
       "short": "六合彩",
-      "period": "26/113",
-      "date": "2026-10-22",
+      "period": "26/114",
+      "date": "2026-10-24",
       "time": "21:30",
       "numbers": [
-        4,
-        11,
-        12,
-        16,
-        38,
-        48
+        9,
+        25,
+        26,
+        28,
+        44,
+        45
       ],
-      "special": 5,
+      "special": 20,
       "source": "香港賽馬會 HKJC 官網（無頭瀏覽器渲染）",
       "sourceUrl": "https://bet.hkjc.com/ch/marksix/results",
       "method": "需定時抓取（無頭瀏覽器）",
-      "status": "unchanged",
+      "status": "updated",
       "delayed": false,
-      "lastSuccess": "2026/10/23 02:16:32"
+      "lastAttempt": "2026/10/25 00:47:21",
+      "lastSuccess": "2026/10/25 00:47:21",
+      "window": "週二四日 21:00–23:00"
     },
     "bingo": {
       "window": "週一二三四五六日 07:00–23:00",
@@ -125,15 +125,15 @@
       "status": "delayed",
       "delayed": true,
       "lastSuccess": "2026/10/06 16:06:33",
-      "lastError": "bingo: no rows for 2026-10-24"
+      "lastError": "bingo: no rows for 2026-10-25"
     }
   },
   "status": {},
   "errors": [
     {
       "key": "bingo",
-      "error": "bingo: no rows for 2026-10-24",
-      "at": "2026/10/24 02:15:58"
+      "error": "bingo: no rows for 2026-10-25",
+      "at": "2026/10/25 00:47:21"
     }
   ]
 }
